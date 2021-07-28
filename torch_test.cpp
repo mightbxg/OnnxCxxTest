@@ -24,7 +24,7 @@ cv::Mat toMat(const Tensor& tensor)
     return cv::Mat(t.size(0), t.size(1), CV_8UC1, t.data_ptr()).clone();
 }
 
-void torchTest(const string& fn_model, const Tensor& input, Tensor& output, bool use_cuda)
+void modelTest(const string& fn_model, const Tensor& input, Tensor& output, bool use_cuda)
 {
     using namespace torch;
     const auto device = use_cuda ? kCUDA : kCPU;

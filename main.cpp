@@ -17,11 +17,11 @@ int main()
         cout << "cannot load image: " << fn_image << endl;
         return -1;
     }
-    auto input = torch::toTensor(image);
 
     // torch
+    auto input = torch::toTensor(image);
     torch::Tensor output_torch;
-    torch::torchTest(fn_torch_model, input, output_torch, use_cuda);
+    torch::modelTest(fn_torch_model, input, output_torch, use_cuda);
     Mat img_torch = torch::toMat(output_torch);
     imshow("img_torch", img_torch);
 
