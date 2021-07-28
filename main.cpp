@@ -3,6 +3,8 @@
 #include <opencv2/opencv.hpp>
 #include <torch/script.h>
 
+#include <TestFuncs/TicToc.hpp>
+
 using namespace std;
 
 namespace {
@@ -40,7 +42,11 @@ void torchTest(const string& fn_model, const torch::Tensor& input, torch::Tensor
     }
 
     Tensor _input = input.to(device);
-    output = module.forward({ _input }).toTensor();
+    for (int i = 0; i < 10; ++i) {
+        dbg::TicToc::ScopedTimer st("torch", true);
+        output = module.forward({ _input }).toTensor().to(kCPU);
+    }
+    output = output.to(kCPU);
 }
 
 } //namespace
@@ -48,6 +54,7 @@ void torchTest(const string& fn_model, const torch::Tensor& input, torch::Tensor
 int main()
 {
     using namespace cv;
+    const bool use_cuda = false;
     const string fn_image = "../cat.jpg";
     const string fn_torch_model = "../super_resolution.pt";
 
@@ -60,7 +67,7 @@ int main()
 
     // torch
     torch::Tensor output_torch;
-    torchTest(fn_torch_model, input, output_torch, false);
+    torchTest(fn_torch_model, input, output_torch, use_cuda);
     Mat img_torch = toMat(output_torch);
     imshow("img_torch", img_torch);
 
