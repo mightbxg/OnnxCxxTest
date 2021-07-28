@@ -1,0 +1,11 @@
+/build*/
+/.vscode/
+/*.user*
+
+*.onnx
+*.pt
+*.pth
+
+*.jpg
+*.png
+*.bmp
