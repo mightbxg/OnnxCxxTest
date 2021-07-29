@@ -10,9 +10,10 @@ using namespace cv;
 int main()
 {
     const bool use_cuda = false;
-    const string fn_image = "../cat.jpg";
-    const string fn_torch_model = "../super_resolution.pt";
-    const string fn_onnx_model = "../super_resolution.onnx";
+    const string fp_data = "../data/";
+    const string fn_image = fp_data + "cat.jpg";
+    const string fn_torch_model = fp_data + "super_resolution.pt";
+    const string fn_onnx_model = fp_data + "super_resolution.onnx";
 
     auto image = imread(fn_image, cv::IMREAD_GRAYSCALE);
     if (image.empty()) {
