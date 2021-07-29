@@ -2,6 +2,7 @@
 #include <memory>
 
 #include "cvdnn_test.h"
+#include "onnx_test.h"
 #include "torch_test.h"
 
 using namespace std;
@@ -9,7 +10,7 @@ using namespace cv;
 
 int main()
 {
-    const bool use_cuda = false;
+    const bool use_cuda = true;
     const string fp_data = "../data/";
     const string fn_image = fp_data + "cat.jpg";
     const string fn_torch_model = fp_data + "super_resolution.pt";
@@ -43,6 +44,11 @@ int main()
         cv::modelTest(fn_onnx_model, image, result_cvdnn, backend, target);
         imshow("result_cvdnn", result_cvdnn);
     }
+
+    // onnx
+    Mat result_onnx;
+    Ort::modelTest(fn_onnx_model, image, result_onnx, use_cuda);
+    imshow("result_onnx", result_onnx);
 
     waitKey(0);
 }

@@ -11,6 +11,8 @@ add_executable(t
     torch_test.h
     torch_test.cpp
     cvdnn_test.h
-    cvdnn_test.cpp)
+    cvdnn_test.cpp
+    onnx_test.h
+    onnx_test.cpp)
 target_link_libraries(t PRIVATE onnxruntime ${TORCH_LIBRARIES} ${OpenCV_LIBS})
 target_compile_features(t PRIVATE cxx_std_17)
