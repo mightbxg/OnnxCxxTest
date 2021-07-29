@@ -8,3 +8,4 @@ Latency test about:
 
 The model used is the SuperResolutionNet used in [PyTorch tutorials](https://pytorch.org/tutorials/advanced/super_resolution_with_onnxruntime.html).
 
+Timer utility from [TestFuncs](https://github.com/mightbxg/TestFuncs).
